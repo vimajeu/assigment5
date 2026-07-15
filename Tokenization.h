@@ -15,13 +15,13 @@ enum TokenType {
 };
 
 class Tokenization {
-    TokenType token_type(std::string& token);
-    std::vector<std::string> tokenize(std::string& input);
-    std::vector<std::string> nonnumeric_replacer(std::vector<std::string> tokens);
+    static TokenType token_type(std::string& token);
+    static std::vector<std::string> tokenize(std::string& input);
+    static std::vector<std::string> nonnumeric_replacer(std::vector<std::string> tokens);
 
 public:
-    bool is_numeric(std::string& text);
-    std::vector<std::string> get_expression();
+    static bool is_numeric(std::string& text);
+    static std::vector<std::string> get_expression(std::string text);
 };
 
 #endif //ASSIGMENT5_TOKENIZATION_H

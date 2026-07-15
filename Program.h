@@ -12,12 +12,10 @@ enum InputType {
 };
 
 class Program {
-    std::string input;
 public:
-    void get_input();
-    InputType input_type();
+    InputType input_type(std::string input);
     static double calculation(std::string expression);
-    static void add_valuable(std::string expression);
+    static void valuable(std::string expression);
     void run();
 };
 

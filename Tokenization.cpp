@@ -42,3 +42,7 @@ std::vector<std::string> Tokenization::nonnumeric_replacer(std::vector<std::stri
     }
     return tokens;
 }
+
+std::vector<std::string> Tokenization::get_expression(std::string text) {
+    return nonnumeric_replacer(tokenize(text));
+}
