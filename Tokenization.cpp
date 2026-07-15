@@ -4,6 +4,7 @@
 
 #include "Tokenization.h"
 #include "Functions.h"
+#include "ValuableContainer.h"
 #include <sstream>
 
 bool Tokenization::is_numeric(std::string& text) {
@@ -36,7 +37,7 @@ std::vector<std::string> Tokenization::nonnumeric_replacer(std::vector<std::stri
             tokens[i] = Functions::calculate_function(tokens[i]);
         }
         else if (type == Valuable) {
-
+            tokens[i] = ValuableContainer::get_valuable(tokens[i]);
         }
     }
 }
