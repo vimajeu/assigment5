@@ -7,8 +7,6 @@
 #include <vector>
 
 class Calculator {
-    std::vector<std::string> high_priority = {"*", "/"};
-    std::vector<std::string> low_priority = {"+", "-"};
 public:
     static double calculating(std::vector<std::string> tokens);
 };

@@ -4,6 +4,7 @@
 
 #include "ValuableContainer.h"
 #include <string>
+std::unordered_map<std::string, double> ValuableContainer::dictionary;
 
 void ValuableContainer::add_valuable(std::string name, double value) {
     dictionary[name] = value;

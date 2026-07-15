@@ -7,6 +7,8 @@
 #include <iterator>
 
 double Calculator::calculating(std::vector<std::string> tokens) {
+    std::vector<std::string> high_priority = {"*", "/"};
+    std::vector<std::string> low_priority = {"+", "-"};
     auto high_pointer = std::find_first_of(
             tokens.begin(), tokens.end(),
             high_priority.begin(), high_priority.end());
