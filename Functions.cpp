@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include "Tokenization.h"
 #include "Program.h"
 
 FunctionType Functions::function_type(std::string function) {
@@ -17,19 +16,19 @@ FunctionType Functions::function_type(std::string function) {
     return NonFunction;
 }
 
-std::string Functions::pow(int a, int b) {
-    return std::to_string(static_cast<int>(std::pow(a, b)));
+std::string Functions::pow(double a, double b) {
+    return std::to_string(std::pow(a, b));
 }
 
-std::string Functions::abs(int a) {
+std::string Functions::abs(double a) {
     return std::to_string(std::abs(a));
 }
 
-std::string Functions::max(int a, int b) {
+std::string Functions::max(double a, double b) {
     return std::to_string(std::max(a, b));
 }
 
-std::string Functions::min(int a, int b) {
+std::string Functions::min(double a, double b) {
     return std::to_string(std::min(a, b));
 }
 

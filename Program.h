@@ -16,7 +16,8 @@ class Program {
 public:
     void get_input();
     InputType input_type();
-    static int calculation(std::string expression);
+    static double calculation(std::string expression);
+    static void add_valuable(std::string expression);
     void run();
 };
 

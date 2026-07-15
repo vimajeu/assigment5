@@ -16,10 +16,10 @@ enum FunctionType {
 
 class Functions {
     static FunctionType function_type(std::string function);
-    static std::string pow(int a, int b);
-    static std::string abs(int a);
-    static std::string max(int a, int b);
-    static std::string min(int a, int b);
+    static std::string pow(double a, double b);
+    static std::string abs(double a);
+    static std::string max(double a, double b);
+    static std::string min(double a, double b);
 public:
     static std::string calculate_function(std::string function);
 };

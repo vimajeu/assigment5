@@ -24,7 +24,10 @@ InputType Program::input_type() {
     return Expression;
 }
 
-int Program::calculation(std::string expression) {
+double Program::calculation(std::string expression) {
+}
+
+void Program::add_valuable(std::string expression) {
 
 }
 
