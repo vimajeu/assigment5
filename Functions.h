@@ -21,7 +21,7 @@ class Functions {
     static std::string max(double a, double b);
     static std::string min(double a, double b);
 public:
-    static std::string calculate_function(std::string function);
+    static std::string calculate_function(std::string& function);
 };
 
 #endif //ASSIGMENT5_FUNCTIONS_H

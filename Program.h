@@ -7,8 +7,8 @@
 #include <string>
 
 enum InputType {
-    Valuable,
-    Expression
+    ValuableInput,
+    ExpressionInput
 };
 
 class Program {

@@ -3,6 +3,8 @@
 //
 
 #include "Program.h"
+#include "Tokenization.h"
+#include "Calculator.h"
 #include <iostream>
 #include <sstream>
 
@@ -19,16 +21,16 @@ InputType Program::input_type() {
     }
 
     if (words[0] == "var" && words[2] == "=") {
-        return Valuable;
+        return ValuableInput;
     }
-    return Expression;
+    return ExpressionInput;
 }
 
 double Program::calculation(std::string expression) {
+
 }
 
 void Program::add_valuable(std::string expression) {
-
 }
 
 void Program::run() {
