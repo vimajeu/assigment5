@@ -3,6 +3,7 @@
 //
 
 #include "Tokenization.h"
+#include "Functions.h"
 #include <sstream>
 
 bool Tokenization::is_numeric(std::string& text) {
@@ -32,10 +33,10 @@ std::vector<std::string> Tokenization::nonnumeric_replacer(std::vector<std::stri
     for (int i = 0; i < tokens.size(); i++) {
         TokenType type = token_type(tokens[i]);
         if (type == Function) {
-
+            tokens[i] = Functions::calculate_function(tokens[i]);
         }
         else if (type == Valuable) {
-            
+
         }
     }
 }

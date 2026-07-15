@@ -17,23 +17,23 @@ FunctionType Functions::function_type(std::string function) {
     return NonFunction;
 }
 
-int Functions::pow(int a, int b) {
-    return static_cast<int>(std::pow(a, b));
+std::string Functions::pow(int a, int b) {
+    return std::to_string(static_cast<int>(std::pow(a, b)));
 }
 
-int Functions::abs(int a) {
-    return std::abs(a);
+std::string Functions::abs(int a) {
+    return std::to_string(std::abs(a));
 }
 
-int Functions::max(int a, int b) {
-    return std::max(a, b);
+std::string Functions::max(int a, int b) {
+    return std::to_string(std::max(a, b));
 }
 
-int Functions::min(int a, int b) {
-    return std::min(a, b);
+std::string Functions::min(int a, int b) {
+    return std::to_string(std::min(a, b));
 }
 
-int Functions::calculate_function(std::string function) {
+std::string Functions::calculate_function(std::string function) {
     FunctionType type = function_type(function);
     if (type == NonFunction) throw std::invalid_argument("No such function exists.");
     std::string expression = function.substr(4, function.size() - 5);

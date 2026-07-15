@@ -16,12 +16,12 @@ enum FunctionType {
 
 class Functions {
     FunctionType function_type(std::string function);
-    int pow(int a, int b);
-    int abs(int a);
-    int max(int a, int b);
-    int min(int a, int b);
+    std::string pow(int a, int b);
+    std::string abs(int a);
+    std::string max(int a, int b);
+    std::string min(int a, int b);
 public:
-    int calculate_function(std::string function);
+    static std::string calculate_function(std::string function);
 };
 
 #endif //ASSIGMENT5_FUNCTIONS_H
