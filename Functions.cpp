@@ -36,8 +36,21 @@ int Functions::min(int a, int b) {
 int Functions::calculate_function(std::string function) {
     FunctionType type = function_type(function);
     if (type == NonFunction) throw std::invalid_argument("No such function exists.");
+    std::string expression = function.substr(4, function.size() - 5);
     if (type == Abs) {
-        std::string expression = function.substr(4, function.size() - 5);
-        Program::calculation(function);
+        return abs(Program::calculation(expression));
     }
+
+    size_t comma_pos = expression.find(",");
+    if (comma_pos == std::string::npos) throw std::invalid_argument("Wrong argument in a function.");
+    std::string a = expression.substr(0, static_cast<int>(comma_pos));
+    std::string b = expression.substr(comma_pos + 1, expression.size() - comma_pos - 1);
+
+    if (type == Pow) {
+        return pow(Program::calculation(a), Program::calculation(b));
+    }
+    if (type == Max) {
+        return max(Program::calculation(a), Program::calculation(b));
+    }
+    return min(Program::calculation(a), Program::calculation(b));
 }
