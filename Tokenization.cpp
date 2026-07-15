@@ -40,4 +40,5 @@ std::vector<std::string> Tokenization::nonnumeric_replacer(std::vector<std::stri
             tokens[i] = ValuableContainer::get_valuable(tokens[i]);
         }
     }
+    return tokens;
 }

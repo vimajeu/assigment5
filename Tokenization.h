@@ -10,7 +10,8 @@ enum TokenType {
     Valuable,
     Function,
     Operator,
-    Number
+    Number,
+    NonToken
 };
 
 class Tokenization {
