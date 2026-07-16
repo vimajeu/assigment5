@@ -10,14 +10,15 @@ class Parser {
     std::vector<std::string> tokens;
     size_t position;
     std::string peek();
-    std::string peek_next();
     std::string advance();
     static bool is_number(const std::string& token);
-    std::string parse_exp();
-    std::string parse_function_call(const std::string& name);
+    double parse_expr();
+    double parse_term();
+    double parse_factor();
+    double parse_function_call(const std::string& name);
 public:
     Parser(std::vector<std::string> tokens);
-    std::vector<std::string> parse();
+    double parse();
 };
 
 #endif //ASSIGMENT5_PARSER_H

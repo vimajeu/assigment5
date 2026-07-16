@@ -15,7 +15,5 @@ add_executable(assigment5
         Tokenization.h
         ValuableContainer.cpp
         ValuableContainer.h
-        Calculator.cpp
-        Calculator.h
         Parser.cpp
         Parser.h)

@@ -9,8 +9,8 @@
 class ValuableContainer {
     static std::unordered_map<std::string, double> dictionary;
 public:
-    static void add_valuable(std::string name, double value);
-    static std::string get_valuable(std::string name);
+    static void add_valuable(const std::string& name, double value);
+    static double get_valuable(const std::string& name);
 };
 
 #endif //ASSIGMENT5_VALUABLECONTAINER_H

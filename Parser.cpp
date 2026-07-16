@@ -13,10 +13,6 @@ std::string Parser::peek() {
     return tokens[position];
 }
 
-std::string Parser::peek_next() {
-    if (position + 1 >= tokens.size()) return "";
-    return tokens[position + 1];
-}
 std::string Parser::advance() {
     std::string token = peek();
     position++;
@@ -42,13 +38,26 @@ bool Parser::is_number(const std::string& token) {
     return true;
 }
 
-std::string Parser::parse_exp() {
-    std::string operators = "+-*/(),";
+double Parser::parse_factor() {
     std::string token = peek();
-    if (is_number(token) || operators.find(token) != std::string::npos) {
+
+    if (is_number(token)) {
         advance();
-        return token;
+        return std::stod(token);
     }
+
+    if (token == "(") {
+        advance();
+        double value = parse_expr();
+        if (peek() != ")") throw std::invalid_argument("Expected ')'");
+        advance();
+        return value;
+    }
+
+    if (token.empty()) {
+        throw std::invalid_argument("Unexpected end of expression");
+    }
+
     std::string name = advance();
     if (peek() == "(") {
         return parse_function_call(name);
@@ -56,14 +65,14 @@ std::string Parser::parse_exp() {
     return ValuableContainer::get_valuable(name);
 }
 
-std::string Parser::parse_function_call(const std::string& name) {
+double Parser::parse_function_call(const std::string& name) {
     advance();
     std::vector<double> args;
     if (peek() != ")") {
-        args.push_back(std::stod(parse_exp()));
-        if (peek() == ",") {
+        args.push_back(parse_expr());
+        while (peek() == ",") {
             advance();
-            args.push_back(std::stod(parse_exp()));
+            args.push_back(parse_expr());
         }
     }
     if (peek() != ")") throw std::invalid_argument("Expected ')'");
@@ -72,9 +81,30 @@ std::string Parser::parse_function_call(const std::string& name) {
     return Functions::calculate_function(name, args);
 }
 
-std::vector<std::string> Parser::parse() {
-    for (int i = 0; i < tokens.size(); i++) {
-        tokens[i] = parse_exp();
+double Parser::parse_term() {
+    double result = parse_factor();
+    while (peek() == "*" || peek() == "/") {
+        std::string op = advance();
+        double rhs = parse_factor();
+        result = (op == "*") ? result * rhs : result / rhs;
     }
-    return tokens;
+    return result;
+}
+
+double Parser::parse_expr() {
+    double result = parse_term();
+    while (peek() == "+" || peek() == "-") {
+        std::string op = advance();
+        double rhs = parse_term();
+        result = (op == "+") ? result + rhs : result - rhs;
+    }
+    return result;
+}
+
+double Parser::parse() {
+    double result = parse_expr();
+    if (position != tokens.size()) {
+        throw std::invalid_argument("Unexpected token: " + peek());
+    }
+    return result;
 }

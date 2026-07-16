@@ -4,14 +4,18 @@
 
 #include "ValuableContainer.h"
 #include <string>
+
 std::unordered_map<std::string, double> ValuableContainer::dictionary;
 
-void ValuableContainer::add_valuable(std::string name, double value) {
+void ValuableContainer::add_valuable(const std::string& name, double value) {
+    if (dictionary.find(name) != dictionary.end()) {
+        throw std::invalid_argument("Variable '" + name + "' is already defined and cannot be reassigned.");
+    }
     dictionary[name] = value;
 }
 
-std::string ValuableContainer::get_valuable(std::string name) {
-    auto pointer = dictionary.find(name);
-    if (pointer == dictionary.end()) throw std::invalid_argument("No such variable.");
-    return std::to_string(pointer->second);
+double ValuableContainer::get_valuable(const std::string& name) {
+    auto it = dictionary.find(name);
+    if (it == dictionary.end()) throw std::invalid_argument("No such variable: " + name);
+    return it->second;
 }
