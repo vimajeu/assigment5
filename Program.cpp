@@ -6,6 +6,7 @@
 #include "Tokenization.h"
 #include "Calculator.h"
 #include "ValuableContainer.h"
+#include "Parser.h"
 #include <iostream>
 #include <sstream>
 
@@ -24,7 +25,8 @@ InputType Program::input_type(std::string input) {
 }
 
 double Program::calculation(std::string expression) {
-    return Calculator::calculating(Tokenization::get_expression(expression));
+    Parser p = Parser(Tokenization::tokenize(expression));
+    return Calculator::calculating(p.parse());
 }
 
 void Program::valuable(std::string expression) {
@@ -35,7 +37,8 @@ void Program::valuable(std::string expression) {
         words.push_back(word);
     }
     std::string exp = expression.substr(7);
-    double value = Calculator::calculating(Tokenization::get_expression(exp));
+    Parser p = Parser(Tokenization::tokenize(expression));
+    double value = Calculator::calculating(p.parse());
     ValuableContainer::add_valuable(words[1], value);
 }
 

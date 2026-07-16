@@ -15,6 +15,7 @@ enum TokenType {
 };
 
 class Tokenization {
+public:
     static std::vector<std::string> tokenize(std::string& input);
 };
 

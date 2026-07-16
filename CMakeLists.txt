@@ -16,4 +16,6 @@ add_executable(assigment5
         ValuableContainer.cpp
         ValuableContainer.h
         Calculator.cpp
-        Calculator.h)
+        Calculator.h
+        Parser.cpp
+        Parser.h)

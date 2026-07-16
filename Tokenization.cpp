@@ -4,7 +4,6 @@
 
 #include "Tokenization.h"
 #include "Functions.h"
-#include <sstream>
 
 std::vector<std::string> Tokenization::tokenize(std::string& input) {
     std::vector<std::string> result;

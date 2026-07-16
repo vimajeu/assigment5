@@ -6,15 +6,6 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include "Program.h"
-
-FunctionType Functions::function_type(std::string function) {
-    if (function.substr(0, 4) == "pow(" && function.back() == ')') return Pow;
-    if (function.substr(0, 4) == "abs(" && function.back() == ')') return Abs;
-    if (function.substr(0, 4) == "max(" && function.back() == ')') return Max;
-    if (function.substr(0, 4) == "min(" && function.back() == ')') return Min;
-    return NonFunction;
-}
 
 std::string Functions::pow(double a, double b) {
     return std::to_string(std::pow(a, b));
@@ -32,24 +23,15 @@ std::string Functions::min(double a, double b) {
     return std::to_string(std::min(a, b));
 }
 
-std::string Functions::calculate_function(std::string& function) {
-    FunctionType type = function_type(function);
-    if (type == NonFunction) throw std::invalid_argument("No such function exists.");
-    std::string expression = function.substr(4, function.size() - 5);
-    if (type == Abs) {
-        return abs(Program::calculation(expression));
+std::string Functions::calculate_function(std::string name, std::vector<double> args) {
+    if (name == "abs") {
+        return abs(args[0]);
     }
-
-    size_t comma_pos = expression.find(',');
-    if (comma_pos == std::string::npos) throw std::invalid_argument("Wrong argument in a function.");
-    std::string a = expression.substr(0, comma_pos);
-    std::string b = expression.substr(comma_pos + 1);
-
-    if (type == Pow) {
-        return pow(Program::calculation(a), Program::calculation(b));
+    if (name == "pow") {
+        return pow(args[0], args[1]);
     }
-    if (type == Max) {
-        return max(Program::calculation(a), Program::calculation(b));
+    if (name == "max") {
+        return max(args[0], args[1]);
     }
-    return min(Program::calculation(a), Program::calculation(b));
+    return min(args[0], args[1]);
 }
